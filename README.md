@@ -7,7 +7,7 @@ This repository contains scripts that can be used to recreate the analyses and f
 All scripts can be found in the **code** folder. For scripts to run correctly, it is important to: (1) install all necessary packages (listed within the library function in the first few lines of code) and (2) set the working directory to the location of the downloaded repository.
 
 ### Calculate cost and prevalence while varying *p* and *s*
-- **costmatrix.R** - Calculates disclosure cost and year-end prevalence over a range of values for *p* and *s*. *The output of costmatrix.R can be found in **output_costmatrix**.*
+- **costmatrix.R** - Runs multiple simulations to calculate disclosure cost and year-end prevalence over a range of values for *p* and *s*. The output of costmatrix.R can be found in **output_costmatrix**.*
 
 ### Figures
 - **figure_barplot.R** - plots Figure 2
@@ -33,7 +33,7 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **functions_extra.R** 
 
 ### Plot time-course of bed bug spread
-*These scripts contain simple representations of the disclosure model.*
+*The output of these scripts are not used in the manuscript, but are a good place to start to get an understanding of the models.*
 - **plotodes.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values is in days.
 - **plotodes_** - same as plotodes.R except time unit for parameters is in years.
 - **plotodes_imm.R** - same as plotodes.R with the addition of intermarget migration parameters (i.e. *i* and *e*). Note: time unit for parameter values is in days.
