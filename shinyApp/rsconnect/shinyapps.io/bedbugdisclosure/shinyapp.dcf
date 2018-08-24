@@ -1,0 +1,10 @@
+name: shinyapp
+title:
+username:
+account: bedbugdisclosure
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 404132
+bundleId: 1552657
+url: https://bedbugdisclosure.shinyapps.io/shinyapp/
+when: 1535134435.52601
