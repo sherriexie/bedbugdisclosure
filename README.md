@@ -40,7 +40,7 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 
 ## Other files
 
-### Shiny App
+### Shiny app
 R scripts and image files used to create the [R Shiny web application](https://bedbugdisclosure.shinyapps.io/shinyapp/ "R Shiny | Modeling Bed Bug Disclosure")
 associated with this manuscript can be found in the **shinyApp** folder. The app can also be run locally with **code/shinyapp_local.R**
 
