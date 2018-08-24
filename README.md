@@ -34,9 +34,9 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 
 ### Plot time-course of bed bug spread
 *These scripts output a simple representation of the mathematical models presented in the manuscript.*
-- **plotodes.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values are in days.
-- **plotodes_** - same as plotodes.R except time unit for parameters are in years.
-- **plotodes_imm.R** - same as plotodes.R with the addition of intermarget migration parameters (i.e. *i* and *e*). Note: time unit for parameter values are in days.
+- **plotodes.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values is in days.
+- **plotodes_** - same as plotodes.R except time unit for parameters is in years.
+- **plotodes_imm.R** - same as plotodes.R with the addition of intermarget migration parameters (i.e. *i* and *e*). Note: time unit for parameter values is in days.
 
 ## Other files
 
