@@ -28,7 +28,7 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **shinyapp_fig_prevalenceplots.R** - makes the plots used in the app's prevalence animation
 
 ### User-defined functions
-*Contains the user-defined functions sourced by the other scripts*
+*Contains the user-defined functions sourced by the other scripts.*
 - **functioins.R** 
 - **functions_extra.R** 
 
