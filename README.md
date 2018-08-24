@@ -42,7 +42,7 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 
 ### Shiny App
 R scripts and image files used to create the [R Shiny web application](https://bedbugdisclosure.shinyapps.io/shinyapp/ "R Shiny | Modeling Bed Bug Disclosure")
-associated with this manuscript can be found in the **shinyApp** folder. Alternatively, the app can be run locally with **code/shinyapp_local**
+associated with this manuscript can be found in the **shinyApp** folder. The app can also be run locally with **code/shinyapp_local.R**
 
 ### Figures
 Figures in the main text of the manuscript can be found in the **figures** folder, and those in the Supplemental Information can be found in the **figures_supplement** folder. All figures were either directly output from R or were output from R and then imported into keynote for formatting.
