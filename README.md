@@ -7,7 +7,7 @@ This repository contains scripts that can be used to recreate the analyses and f
 All scripts can be found in the **code** folder. For scripts to run correctly, it is important to: (1) install all necessary packages (listed within the library function in the first few lines of code) and (2) set the working directory to the location of the downloaded repository.
 
 ### Calculate cost and prevalence while varying *p* and *s*
-- **costmatrix.R** - Calculates disclosure cost and year-end prevalence over a range of values for *p* and *s*. *The output of costmatrix.R can be found in **output_costmatrix**.*
+- **costmatrix.R** - Runs multiple simulations to calculate disclosure cost and year-end prevalence over a range of values for *p* and *s*. The output of costmatrix.R can be found in **output_costmatrix**.*
 
 ### Figures
 - **figure_barplot.R** - plots Figure 2
@@ -28,21 +28,21 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **shinyapp_fig_prevalenceplots.R** - makes the plots used in the app's prevalence animation
 
 ### User-defined functions
-*Contains the user-defined functions sourced by the other scripts*
+*Contains the user-defined functions sourced by the other scripts.*
 - **functioins.R** 
 - **functions_extra.R** 
 
 ### Plot time-course of bed bug spread
-*These scripts output a simple representation of the mathematical models presented in the manuscript.*
-- **plotodes.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values are in days.
-- **plotodes_** - same as plotodes.R except time unit for parameters are in years.
-- **plotodes_imm.R** - same as plotodes.R with the addition of intermarget migration parameters (i.e. *i* and *e*). Note: time unit for parameter values are in days.
+*The output of these scripts are not used in the manuscript, but are a good place to start to get an understanding of the models.*
+- **plotodes.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values is in days.
+- **plotodes_** - same as plotodes.R except time unit for parameters is in years.
+- **plotodes_imm.R** - same as plotodes.R with the addition of intermarget migration parameters (i.e. *i* and *e*). Note: time unit for parameter values is in days.
 
 ## Other files
 
-### Shiny App
+### Shiny app
 R scripts and image files used to create the [R Shiny web application](https://bedbugdisclosure.shinyapps.io/shinyapp/ "R Shiny | Modeling Bed Bug Disclosure")
-associated with this manuscript can be found in the **shinyApp** folder. Alternatively, 
+associated with this manuscript can be found in the **shinyApp** folder. The app can also be run locally with **code/shinyapp_local.R**
 
 ### Figures
 Figures in the main text of the manuscript can be found in the **figures** folder, and those in the Supplemental Information can be found in the **figures_supplement** folder. All figures were either directly output from R or were output from R and then imported into keynote for formatting.
