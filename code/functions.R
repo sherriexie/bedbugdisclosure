@@ -49,6 +49,7 @@ SetODEs<-function(t,y,p){
   Sv2 <- y[5]
   trt <- y[6]
   tov <- y[7]
+  vac <- y[8]
   
   # Note f(t) = b*Ir/(Sr+b*Ir)
   with(as.list(p),{
@@ -59,7 +60,8 @@ SetODEs<-function(t,y,p){
     dSv2.dt <- gamma*Iv - n*(1-d)*Sv2 - 1/D*Sv2
     dtrt.dt <- gamma*Ir + gamma*Iv
     dtov.dt <- n*Sv + n*(1-d)*Sv2 + n*(1-d)*Iv
-    return(list(c(dSr.dt, dIr.dt, dSv.dt, dIv.dt, dSv2.dt, dtrt.dt, dtov.dt)))
+    dvac.dt <- Sv + Sv2 + Iv
+    return(list(c(dSr.dt, dIr.dt, dSv.dt, dIv.dt, dSv2.dt, dtrt.dt, dtov.dt, dvac.dt)))
   })
 }
 
@@ -112,7 +114,7 @@ GetInit <- function(p){
   Sr <- N - Sv - N*prev
   
   init.par <- c(Sr, Ir, Sv, Iv)
-  names(init.par) <- c("Sr0", "Ir0", "Sv0", "Iv0")
+  names(init.par) <- c("Sr", "Ir", "Sv", "Iv")
   return(init.par)
 }
 
@@ -149,7 +151,8 @@ GetCost <- function(p.set, bbcosts, years){
   Sv20 <- 0  # Sv20 is set to 0 because we assume disclosure begins at time 0
   trt0 <- 0  # set treatment counter to 0 at time 0
   tov0 <- 0  # set turnover counter to 0 at time 0
-  y0 <- c(Sr0, Ir0, Sv0, Iv0, Sv20, trt0, tov0)
+  vac0 <- 0  # set vacancy counter to 0 at time 0
+  y0 <- c(Sr0, Ir0, Sv0, Iv0, Sv20, trt0, tov0, vac0)
   t <- seq(from=0, to=365*max(years)+1, by=1)
 
   # Set bed bug related costs (treatment, turnover, and vacancy costs)
@@ -183,10 +186,8 @@ GetCost <- function(p.set, bbcosts, years){
               (out0[,7][last.day] - out0[,7][first.day]))
     n.tov <- ((out[,8][last.day] - out[,8][first.day]) - 
                 (out0[,8][last.day] - out0[,8][first.day]))
-    n.vac <- ((sum(out[,4][first.day:last.day]) + sum(out[,5][first.day:last.day]) +
-                 sum(out[,6][first.day:last.day])) - 
-                (sum(out0[,4][first.day:last.day]) + sum(out0[,5][first.day:last.day]) +
-                   sum(out0[,6][first.day:last.day])))
+    n.vac <- ((out[,9][last.day] - out[,9][first.day]) - 
+                (out0[,9][last.day] - out0[,9][first.day]))
 
     # Total per unit treatment cost = 
     # (# of treatments) x (avg cost of bed bug treatment) / (total # units)
@@ -208,6 +209,8 @@ GetCost <- function(p.set, bbcosts, years){
     # Ir and Iv classes on the last day of the year divided by N
     prev[jj] <- (out[,3][last.day] + out[,5][last.day])/N
     
+    # Proportion vacant at the end of year jj is simply the number of units in the 
+    # Sv, Iv, and Sv2 classes on the last day of the year divided by N
     pvac[jj] <- (out[,4][last.day] + out[,5][last.day] + out[,6][last.day])/N
 
   }
@@ -247,7 +250,8 @@ GetCost2 <- function(p.set, bbcosts, year){
   Sv20 <- 0  # Sv20 is set to 0 because we assume disclosure begins at time 0
   trt0 <- 0  # set treatment counter to 0 at time 0
   tov0 <- 0  # set turnover counter to 0 at time 0
-  y0 <- c(Sr0, Ir0, Sv0, Iv0, Sv20, trt0, tov0)
+  vac0 <- 0  # set vacancy counter to 0 at time 0
+  y0 <- c(Sr0, Ir0, Sv0, Iv0, Sv20, trt0, tov0, vac0)
   t <- seq(from=0, to=365*year, by=1)
 
   # Set bed bug related costs (treatment, turnover, and vacancy costs)
@@ -277,10 +281,8 @@ GetCost2 <- function(p.set, bbcosts, year){
               (out0[,7][last.day] - out0[,7][first.day]))
   n.tov <- ((out[,8][last.day] - out[,8][first.day]) - 
               (out0[,8][last.day] - out0[,8][first.day]))
-  n.vac <- ((sum(out[,4][first.day:last.day]) + sum(out[,5][first.day:last.day])
-             + sum(out[,6][first.day:last.day])) - 
-              (sum(out0[,4][first.day:last.day]) + sum(out0[,5][first.day:last.day])
-               + sum(out0[,6][first.day:last.day])))
+  n.vac <- ((out[,9][last.day] - out[,9][first.day]) - 
+              (out0[,9][last.day] - out0[,9][first.day]))
   
   # Calculate component costs and total cost
   trt <- n.trt*ctrt/N
@@ -303,7 +305,7 @@ GetCost2 <- function(p.set, bbcosts, year){
 # GetCostMatrix function:
 # ----------------------
 # Inputs: 
-#   - Range of baseline prevalenc values
+#   - Range of baseline prevalence values
 #   - Range of disclosure index values
 #   - Number of years to run the simulation
 # Output: 

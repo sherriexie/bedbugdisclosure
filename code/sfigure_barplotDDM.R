@@ -1,16 +1,18 @@
-library(deSolve)
 library(reshape2)
 library(ggplot2)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-setwd("UPDATE_PATH/bedbugdisclosure")
+#setwd("~/Dropbox/Research/SESYNC/Code")
+#setwd("UPDATE_PATH/bedbugdisclosure")
 
 # Source the functions we will need for our analyses.
 source("code/functions.R")
+source("code/functions_DDM.R")
 
 # Set baseline prevalence (p) and renter selectivity (s).
 p <- 0.05
 s <- 0.5
+Dnum <- 100 
 
 # Set parameter values and bed bug-related costs.  
 preparam <- SetParameters()
@@ -24,19 +26,18 @@ param <- c(preparam, beta, base.prev = p)
 # Get initial conditions (Sr0, Ir0, etc.) and append these and d to our vector 
 # of parameter values.
 init <- GetInit(param)
-param.init <- c(param, init, d = s)
+param.init <- c(param, init, d = s, Dnum = Dnum)
 
 # Set the years over which to run the simulation and get the cost of disclosure.
 years <- 1:20
 
 # Run the GetCost function which outputs a data frame of total and component
 # costs, along with prevalence over the years of the disclosure simulation.
-cost.df <- GetCost(param.init, bbcosts, years)
+cost.df <- GetCostDDM(param.init, bbcosts, years)
 
 # Add Year 0
 year0 <- data.frame(Year = 0, Total_Cost = 0, Treatment = 0, Turnover = 0, 
-                    Vacancy = 0, Prevalence = p, 
-                    Prop_Vacant = (init[3]+init[4])/param[6])
+                    Vacancy = 0, Prevalence = p, Prop_Vacant = (init[3]+init[4])/param[6])
 cost.df <- rbind(year0, cost.df)
 
 # Separate data frame into total cost, component cost, and prevalence.
@@ -61,9 +62,8 @@ mid.prev <- (maxprev + minprev)/2
 m_transform <- range.prev/range.cost
 b_transform <- mid.prev - m_transform*mid.cost
 
-# Plot barplot renters supplemental figure
-pdf("sfig_barplot_renters.pdf", height=6, width=10)
-ggplot() +
+# Plot Figure 3
+fig <- ggplot() +
   geom_bar(data=componentcost.df, stat = "identity", 
            aes(x=Year, y=value, fill= variable)) +
   scale_fill_manual(name="Cost component:", values=c("#1f78b4", "#b2df8a", 
@@ -88,6 +88,7 @@ ggplot() +
         axis.title.y.right = element_text(color = "firebrick3"),
         axis.text.y.right = element_text(color = "firebrick3")) +
   geom_line(data=prev.df,aes(x=Year, y=(Prevalence-b_transform)/m_transform, 
-            color = "firebrick1"), color="firebrick1", linetype=1, size=1.3)  
-dev.off()
+            color = "firebrick1"), color="firebrick1", linetype=1, size=1.3) 
+plot(fig)
+#ggsave("figures/DDMfigures/fig_barplotDDM.pdf", height=6, width=10)
 

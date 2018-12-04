@@ -3,7 +3,8 @@ library(ggplot2)
 library(reshape2)
 library(ggplot2)
 
-setwd("/Users/sxs/Dropbox/Levy Lab/bb_properties/bb disclosure code")
+# IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
+setwd("UPDATE_PATH/bedbugdisclosure")
 
 # Source the functions we will need for our analysis.
 source("code/functions.R")
