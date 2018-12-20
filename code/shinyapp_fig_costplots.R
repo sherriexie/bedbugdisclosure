@@ -62,7 +62,7 @@ SavePNG <- function(df, year){
   persp(bprev.vec, d.vec, cost, phi=0, theta=-35,
         xlab="\n Baseline prevalence (%)", ylab="\n Renter selectivity", 
         zlab = "\n Cost ($)", ticktype="detailed", border=NA, col=colmat,
-        main = paste("Total Cost of Disclosure Year", year), cex.main=1.8, 
+        main = paste("Cost to Landlords, Year", year), cex.main=1.8, 
         zlim=c(mincost, maxcost))
   dev.off()
 }

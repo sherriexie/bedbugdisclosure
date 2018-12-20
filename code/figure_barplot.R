@@ -62,7 +62,7 @@ m_transform <- range.prev/range.cost
 b_transform <- mid.prev - m_transform*mid.cost
 
 # Plot barplot renters supplemental figure
-pdf("sfig_barplot_renters.pdf", height=6, width=10)
+pdf("figures/Routput/fig_barplot.pdf", height=6, width=10)
 ggplot() +
   geom_bar(data=componentcost.df, stat = "identity", 
            aes(x=Year, y=value, fill= variable)) +

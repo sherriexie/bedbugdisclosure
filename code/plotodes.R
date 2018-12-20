@@ -29,7 +29,7 @@ beta <- GetBeta(preparam, p)
 # 4. Either solve for initial conditions "at equilibrium"...
 param <- c(preparam, beta, base.prev=p)
 init <- GetInit(param)
-y0 <- c(init, 0, 0, 0)
+y0 <- c(init, 0, 0, 0, 0)
 
 # OR
 
@@ -48,10 +48,12 @@ out <- ode(y=y0, times = t, func=SetODEs, parms=pp)
 # 7. Plot the output
 N = preparam[6]
 plot(t/365, out[,2], type="l", col="black", ylim=c(0,1000), 
-     ylab="Number of units", xlab="Year")
-lines(t/365, out[,3], col="red")
-lines(t/365, out[,4], col="black", lty=3)
-lines(t/365, out[,5], col="red", lty=3)
-legend("right", legend=c("Sr", "Sv", "Ir", "Iv"), bty="n",
-       col=c("black", "black", "red", "red"), lty=c(1,3,1,3), cex=0.8)
+     ylab="Number of units", xlab="Year")  # Sr
+lines(t/365, out[,3], col="red")           # Ir
+lines(t/365, out[,4], col="black", lty=3)  # Sv
+lines(t/365, out[,5], col="red", lty=3)    # Iv
+lines(t/365, out[,6], col="black", lty=2)   # Sv'
+legend("right", legend=c("Sr", "Sv","Sv'", "Ir", "Iv"), bty="n",
+       col=c("black", "black", "black", "red", "red"), lty=c(1,3,2,1,3),
+       lwd=c(1,1,1,1,1), cex=0.8)
 

@@ -93,7 +93,7 @@ colmat20 <- MapColors(cost20)
 # Save plots as a pdf to be formatted in keynote to make Figure 3
 
 pdf("figures/Routput/3dcost.pdf", height=4.5, width=4.5)
-p <- persp(bprev.vec, d.vec, cost1, phi=25, theta=-35,
+persp(bprev.vec, d.vec, cost1, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Cost ($)",
       main = "Total Cost of Disclosure Year 1", border=NA,
       col=colmat1)

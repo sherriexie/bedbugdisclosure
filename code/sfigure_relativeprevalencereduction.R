@@ -63,7 +63,7 @@ prev20 <- matrix(p20, nrow=length(bprev.vec), ncol=length(d.vec))
 
 # -----------------------------------------------------------------------------
 # 2. Color prep for 3d plots:
-# ----------------
+# --------------------------
 #    -   Code adapted from:
 #        https://stackoverflow.com/questions/39117827/colorful-plot-using-persp
 #    -   Set our color palette so that high prevalence is red, and low 

@@ -3,11 +3,11 @@ library(reshape2)
 library(ggplot2)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-setwd("/Users/sxs/Dropbox/Levy Lab/bb_properties/bedbugdisclosure")
+setwd("UPDATE_PATH/bedbugdisclosure")
 
 # Source the functions we will need for our analyses.
 source("code/functions.R")
-source("../functions_renters.R")
+source("code/functions_extra.R")
 
 # Set baseline prevalence (p) and renter selectivity (s).
 p <- 0.05
@@ -15,12 +15,9 @@ s <- 0.5
 
 # Set parameter values and bed bug-related costs.  
 preparam <- SetParameters()
-#bbcosts <- SetCost()
-renter.costs <- c(ancillary.cost.per.trt = 800, # cost of replacing a low to mid range queen mattress 
-                  cost.per.move = 400, # lower range listed for 2 bedroom apt
-                                       # https://www.homeadvisor.com/cost/storage-and-organization/hire-a-moving-service/#movers
-                  cost.per.month.infested = 200) # national hourly wage for all private employees was about $26 for 2017 (x8 for a full work day)
-                                                 # source: https://www.bls.gov/web/empsit/compaehes.txt
+renter.costs <- c(ancillary.cost.per.trt = 800, 
+                  cost.per.move = 400, 
+                  cost.per.month.infested = 200)
 
 # Solve for beta to get the desired baseline prevalence in the absence of
 # disclosure. Append beta and p to our vector of parameter values.
@@ -73,7 +70,7 @@ m_transform <- range.prev/range.cost
 b_transform <- mid.prev - m_transform*mid.cost
 
 # Plot Supplemental Figure xxx
-pdf("sfig_barplot_renters.pdf", height=6, width=11)
+pdf("figures_supplement/Routput/sfig_barplot_renters.pdf", height=6, width=11)
 ggplot() +
   geom_bar(data=componentcost.df, stat = "identity", 
            aes(x=Year, y=savings, fill= variable)) +
@@ -87,6 +84,8 @@ ggplot() +
         legend.text = element_text(size=16),
         legend.title = element_text(size=16)) +
   labs(x="Years since implementation of disclosure", y = "Savings ($)") +
+  geom_line(data=totalcost.df,aes(x=Year, y=Total_Savings, color = "black"), 
+            color="black", linetype=2, size=1.3) +
   scale_y_continuous(breaks=seq(0, maxcc, by=20),
                      sec.axis = sec_axis(~.*m_transform + b_transform, 
                                          name = "Prevalence reduction (%)",
@@ -95,7 +94,7 @@ ggplot() +
         axis.ticks.y.right = element_line(color = "firebrick3"),
         axis.title.y.right = element_text(color = "firebrick3"),
         axis.text.y.right = element_text(color = "firebrick3")) +
-  geom_line(data=prev.df,aes(x=Year, y=(Prevalence_Reducation-b_transform)/m_transform, 
+  geom_line(data=prev.df,aes(x=Year, y=(Prevalence_Reduction-b_transform)/m_transform, 
                              color = "firebrick1"), color="firebrick1", linetype=1, size=1.3)  
 dev.off()
 

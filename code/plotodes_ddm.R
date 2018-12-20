@@ -1,11 +1,10 @@
 library(deSolve)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-#setwd("~/Dropbox/Research/SESYNC/Code")
-#setwd("UPDATE_PATH/bedbugdisclosure")
+setwd("UPDATE_PATH/bedbugdisclosure")
 
 source("code/functions.R")
-source("code/functions_DDM.R")
+source("code/functions_extra.R")
 
 # 1. Set baseline prevalence (p), renter selectivity (s), # of disclosed compartments (Dnum), and years of simulation
 p <- 0.05
@@ -29,17 +28,12 @@ preparam <- SetParametersManual()
 # 3. Solve for beta that will give the desired baseline prevalence
 beta <- GetBeta(preparam, p)
 
-# 4. Either solve for initial conditions "at equilibrium"...
+# 4. Solve for initial conditions "at equilibrium"...
 param <- c(preparam, beta, base.prev=p)
 init <- GetInit(param)
 y0 <- c(init, rep(0,Dnum), 0, 0,0)
 names(y0)[5:(5+Dnum-1)] <- rep('Sv2',Dnum)
 names(y0)[(5+Dnum):(5+Dnum+2)] <- c("C_treat","C_turnover","C_vacancy")
-
-# OR
-
-# 4. set initial conditions manually
-#y0 <- c(Sr0=899, Ir0=1, Sv0=100, Iv0=0, Sv20=rep(0,Dnum), trt0=0, tov0=0)
 
 # 5. Format parameters and time to input into ode function
 

@@ -1,16 +1,17 @@
+library(deSolve)
 library(reshape2)
 library(ggplot2)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-#setwd("~/Dropbox/Research/SESYNC/Code")
-#setwd("UPDATE_PATH/bedbugdisclosure")
+setwd("UPDATE_PATH/bedbugdisclosure")
 
 # Source the functions we will need for our analyses.
 source("code/functions.R")
-source("code/functions_DDM.R")
+source("code/functions_extra.R")
 
 # Set baseline prevalence (p) and renter selectivity (s).
-p <- 0.05
+#p <- 0.05
+p <- 0.01
 s <- 0.5
 Dnum <- 100 
 
@@ -64,8 +65,11 @@ mid.prev <- (maxprev + minprev)/2
 m_transform <- range.prev/range.cost
 b_transform <- mid.prev - m_transform*mid.cost
 
-# Plot Figure 3
-fig <- ggplot() +
+# Plot Supp Figure 9
+#pdf("figures_supplement/Routput/fig_barplot_DDM_prev5.pdf", height=4, width=7)
+pdf("figures_supplement/Routput/fig_barplot_DDM_prev1.pdf", height=4, width=7)
+
+ggplot() +
   geom_bar(data=componentcost.df, stat = "identity", 
            aes(x=Year, y=value, fill= variable)) +
   scale_fill_manual(name="Cost component:", values=c("#1f78b4", "#b2df8a", 
@@ -81,17 +85,21 @@ fig <- ggplot() +
   geom_line(data=totalcost.df,aes(x=Year, y=Total_Cost, color = "black"), 
             color="black", linetype=2, size=1.3) +
   scale_color_discrete(name="", labels="Total Cost") +
-  scale_y_continuous(breaks=seq(-1, 4, 1),
+  # y-axes breaks for prevalence = 0.05
+  #scale_y_continuous(breaks=seq(-1, 4, 1),
+  #                   sec.axis = sec_axis(~.*m_transform + b_transform, 
+  #                                       name = "Diff. in prevalence (%)",
+  #                                       breaks = seq(-0.01,0,0.005))) +
+  # y-axes breaks for prevalence = 0.01
+  scale_y_continuous(breaks=seq(0, 1, 0.2),
                      sec.axis = sec_axis(~.*m_transform + b_transform, 
                                          name = "Diff. in prevalence (%)",
-                                         breaks = seq(-0.01,0,0.005))) +
+                                         breaks = seq(-0.0004,0,0.0002))) +
   theme(axis.line.y.right = element_line(color = "firebrick3"),
         axis.ticks.y.right = element_line(color = "firebrick3"),
         axis.title.y.right = element_text(color = "firebrick3"),
         axis.text.y.right = element_text(color = "firebrick3")) +
   geom_line(data=prev.df,aes(x=Year, y=(Prevalence-b_transform)/m_transform, 
                              color = "firebrick1"), color="firebrick1", linetype=1, size=1.3)  
-plot(fig)
-#ggsave("figures/DDMfigures/fig_barplotDDM_v_Basic.pdf", height=6, width=10)
-
+dev.off()
 

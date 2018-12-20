@@ -4,8 +4,7 @@ library(ggplot2)
 library(dplyr)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-#setwd("UPDATE_PATH/bedbugdisclosure")
-setwd("/Users/sxs/Dropbox/Levy Lab/bb_properties/bedbugdisclosure")
+setwd("UPDATE_PATH/bedbugdisclosure")
 
 # Source the functions we will need for our analyses.
 source("code/functions.R")

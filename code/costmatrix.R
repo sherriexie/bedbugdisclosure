@@ -21,6 +21,7 @@ costmat4 <- GetCostMatrix(bprev.vec, d.vec, nyears = 4)
 costmat5 <- GetCostMatrix(bprev.vec, d.vec, nyears = 5)
 costmat20 <- GetCostMatrix(bprev.vec, d.vec, nyears = 20)
 
+# Save the output
 saveRDS(costmat1, "output_costmatrix/costmat_yr1.rds")
 saveRDS(costmat2, "output_costmatrix/costmat_yr2.rds")
 saveRDS(costmat3, "output_costmatrix/costmat_yr3.rds")

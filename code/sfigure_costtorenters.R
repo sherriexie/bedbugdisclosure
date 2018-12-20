@@ -3,8 +3,7 @@ library(oce)
 library(lattice)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-#setwd("UPDATE_PATH/bedbugdisclosure")
-setwd("/Users/sxs/Dropbox/Levy Lab/bb_properties/")
+setwd("UPDATE_PATH/bedbugdisclosure")
 
 # Set the x- and y- axis breaks, i.e. baseline prevalence and disclosure index,
 # respectively
@@ -92,27 +91,27 @@ colmat20 <- MapColors(cost20)
 pdf("3dcost_renters.pdf", height=4.5, width=4.5)
 persp(bprev.vec, d.vec, cost1, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Savings ($)",
-      main = "Total Cost of Disclosure Year 1", border=NA,
+      main = "\n Savings for Renters Year 1", border=NA,
       col=colmat1)
 persp(bprev.vec, d.vec, cost2, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Savings ($)",
-      main = "\n Total Cost of Disclosure Year 2", border=NA,
+      main = "\n Savings for Renters Year 2", border=NA,
       col=colmat2)
 persp(bprev.vec, d.vec, cost3, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Savings ($)",
-      main = "\n Total Cost of Disclosure Year 3", border=NA,
+      main = "\n Savings for Renters Year 3", border=NA,
       col=colmat3)
 persp(bprev.vec, d.vec, cost4, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Savings ($)",
-      main = "\n Total Cost of Disclosure Year 4", border=NA,
+      main = "\n Savings for Renters Year 4", border=NA,
       col=colmat4)
 persp(bprev.vec, d.vec, cost5, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Savings ($)",
-      main = "\n Total Cost of Disclosure Year 5", border=NA,
+      main = "\n Savings for Renters Year 5", border=NA,
       col=colmat5)
 persp(bprev.vec, d.vec, cost20, phi=25, theta=-35,
       xlab="\n Baseline prev. (%)", ylab="\n Renter selectivity", zlab = "\n Savings ($)",
-      main = "\n Total Cost of Disclosure Year 20",  border=NA,
+      main = "\n Savings for Renters Year 20",  border=NA,
       col=colmat20)
 dev.off()
 
