@@ -22,7 +22,7 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **sfigure_relativeprevalencereduction.R** - plots Figure S2
 - **sfigure_discountedcosts.R** - plots Figure S3
 - **sfigure_renters_barplot.R** - plots Figure S4
-- **sfigure_costtorenters.R** - plots Figure S5
+- **sfigure_costtorenters.R** - plots Figure S5 from the output of costmatrix_renters.R
 - **sfigure_sensitivitytoparameters.R** - plots Figures S6-S9
 - **sfigure_googletrends.R** - plots Figure S10
 - **sfigure_breakevenpoint.R** - plots Figure S11
