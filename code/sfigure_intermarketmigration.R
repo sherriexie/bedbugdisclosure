@@ -40,7 +40,7 @@ immigration.effect$i <- as.character(immigration.effect$i*100)
 max(immigration.effect$Total_Cost)  # 11
 min(immigration.ref$Total_Cost)  # -68
 
-pdf("figures/Routput/IMM_varyingi_cost.pdf", height=4, width=4.9)
+pdf("figures_supplement/Routput/IMM_varyingi_cost.pdf", height=4, width=4.9)
 ggplot() +
   geom_hline(yintercept=0, linetype="dotted") +
   geom_line(data=immigration.effect, aes(x=Year, y=Total_Cost, color=i), size=1.5) +
@@ -63,7 +63,7 @@ dev.off()
 max(immigration.effect$Prevalence)  # 0.05
 min(immigration.ref$Prevalence)  # 0.0197
 
-pdf("figures/Routput/IMM_varyingi_prev.pdf", height=4, width=4.64)
+pdf("figures_supplement/Routput/IMM_varyingi_prev.pdf", height=4, width=4.64)
 ggplot() +
   geom_line(data=immigration.effect, aes(x=Year, y=Prevalence*100, color=i), 
             size=1.5) +
@@ -97,7 +97,7 @@ summary(externalprev.effect$Total_Cost)
 # > -51.50  -32.62  -24.19  -21.80  -11.00   11.18 
 
 
-pdf("figures/Routput/IMM_varyinge_cost.pdf", height=4, width=4.9)
+pdf("figures_supplement/Routput/IMM_varyinge_cost.pdf", height=4, width=4.9)
 ggplot() +
   geom_hline(yintercept=0, linetype="dotted") +
   geom_line(data=externalprev.effect, aes(x=Year, y=Total_Cost, color=e),
@@ -118,7 +118,7 @@ dev.off()
 
 # 2.2 Effect of external prevalence on final prevalence ----
 
-pdf("figures/Routput/IMM_varyinge_prev.pdf", height=4, width=4.64)
+pdf("figures_supplement/Routput/IMM_varyinge_prev.pdf", height=4, width=4.64)
 ggplot() +
   geom_line(data=externalprev.effect, aes(x=Year, y=Prevalence*100, color=e),
             size=1.5) +

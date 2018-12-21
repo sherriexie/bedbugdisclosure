@@ -14,7 +14,6 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **figure_barplot.R** - plots Figure 2
 - **figure_cost.R** - plots Figure 3 from the output of costmatrix.R
 - **figure_prevalence.R** - plots Figure 4 from the output of costmatrix.R
-- **figure_intermarketmigration.R** - plots Figure 5
 
 ### Supplemental tables and figures
 - **stable_twopopmodel.R** - outputs values used to populate Table S1
@@ -24,10 +23,11 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **sfigure_renters_barplot.R** - plots Figure S4
 - **sfigure_costtorenters.R** - plots Figure S5 from the output of costmatrix_renters.R
 - **sfigure_sensitivitytoparameters.R** - plots Figures S6-S9
-- **sfigure_googletrends.R** - plots Figure S10
-- **sfigure_breakevenpoint.R** - plots Figure S11
-- **sfigure_ddm_barplot.R** - plots Figure S12
-- **sfigure_ddm_props.R** - plots Figure S13
+- **sfigure_intermarketmigration.R** - plots Figure S10
+- **sfigure_googletrends.R** - plots Figure S11
+- **sfigure_breakevenpoint.R** - plots Figure S12
+- **sfigure_ddm_barplot.R** - plots Figure S13
+- **sfigure_ddm_props.R** - plots Figure S14
 
 ### Shiny figures
 - **shinyapp_fig_costplots.R** - makes the plots used in the app's landlord cost animation 
